@@ -9,7 +9,7 @@ function 燈數 (num: number) {
         y = Math.floor(num / 5) - 1
     } else {
         x = Math.floor(num / 5) - 1
-        y = 4
+        y = Math.floor(num / 5)
     }
     led.plot(x, y)
 }
@@ -20,12 +20,24 @@ input.onButtonPressed(Button.A, function () {
         list.push(0)
     }
     n = 0
-    while (n < 3) {
+    while (n < a) {
         a = randint(0, 24)
-        if (list[a]) {
+        if (list[a] == 0) {
             list[a] = 1
             n += 1
             燈數(a + 1)
         }
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    a += -1
+    if (a < 0) {
+        a = 0
+    }
+})
+input.onButtonPressed(Button.B, function () {
+    a += 1
+    if (a > 25) {
+        a = 25
     }
 })
